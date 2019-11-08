@@ -7,11 +7,12 @@ import plotly.graph_objects as go
 from sqlalchemy import create_engine
 
 
-path = 'E:/HP/Documents/DS4A_workspace/Week 4/extended_case_4_student/'
-df = pd.read_csv(path + 'aggr.csv', parse_dates = ['Entry time'])
+# path = 'E:/HP/Documents/DS4A_workspace/Week 4/extended_case_4_student/'
+# df = pd.read_csv(path + 'aggr.csv', parse_dates = ['Entry time'])
 
-# engine = create_engine('postgresql://postgres:JX353dTEBqwRq7kM0o4p@nps-demo-instance.c1cfhcaz8mlf.sa-east-1.rds.amazonaws.com/strategy')
-# df = pd.read_sql("SELECT * from trades", engine.connect(), parse_dates=('Entry time',))
+engine = create_engine('postgresql://postgres:IwV4HsARvUYqavE0xDqt@nps-demo-instance.cmnlld6zybze.us-east-2.rds.amazonaws.com/strategy')
+
+df = pd.read_sql("SELECT * from trades", engine.connect(), parse_dates=('Entry time',))
 
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/uditagarwal/pen/oNvwKNP.css', 'https://codepen.io/uditagarwal/pen/YzKbqyV.css'])
 
@@ -372,5 +373,5 @@ def update_table(exchange, leverage, start_date, end_date):
     return dff.to_dict('records')
 
 if __name__ == "__main__":
-#     app.run_server(debug = True, host = '0.0.0.0')
-    app.run_server(debug = True)
+    app.run_server(debug = True, host = '0.0.0.0')
+#     app.run_server(debug = True)
